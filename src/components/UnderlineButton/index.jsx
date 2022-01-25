@@ -1,10 +1,10 @@
 import { TouchableOpacity, Text,StyleSheet } from "react-native";
 
-export function UnderlineButton () {
+export function UnderlineButton ({ onPress = () => {}, children }) {
   return (
-    <TouchableOpacity style={styles.UnderlineButton} activeOpacity={0.7}>
+    <TouchableOpacity onPress={onPress} style={styles.UnderlineButton} activeOpacity={0.7}>
       <Text style={styles.text}>
-        já possuo conta
+        {children}
       </Text>
     </TouchableOpacity>
   )

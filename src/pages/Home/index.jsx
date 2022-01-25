@@ -2,8 +2,11 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { Button } from '../../components/Button';
 import { UnderlineButton } from '../../components/UnderlineButton';
 import { Logo } from '../../components/Logo';
+import { useNavigation } from '@react-navigation/native';
 
-export function Home({ navigation }) {
+export function Home() {
+  const { navigate } = useNavigation();
+
   return (
     <View style={styles.container}>
       <View style={styles.logoBox}>
@@ -17,16 +20,18 @@ export function Home({ navigation }) {
           <View style={styles.boxContent}>
             <View style={styles.textBox}>
               <Text style={styles.title}>
-                Bem vindo!
+                Bem vindo
               </Text>
               <Text style={styles.text}>
-                Bem vindo! Nosso objetivo aqui na petify é melhorar a qualidiade de vida do seu pet. Mas primeiro, você já possui uma conta?
+                Nosso objetivo aqui na petify é melhorar a qualidiade de vida do seu pet. Mas primeiro, você já possui uma conta?
               </Text>
             </View>
-            <Button onPress={() => navigation.navigate('SignUp')}>
+            <Button onPress={() => navigate('SignUp')}>
               Criar conta
             </Button>
-            <UnderlineButton />
+            <UnderlineButton onPress={() => navigate('Login')}>
+              já tenho uma conta
+            </UnderlineButton>
           </View>
         </View>
       </View>
@@ -85,6 +90,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    fontFamily: 'Nunito_700Bold'
+    fontFamily: 'Nunito_400Regular',
+    fontSize: 18,
   }
 });

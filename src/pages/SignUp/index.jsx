@@ -1,5 +1,5 @@
 import { Logo } from '../../components/Logo';
-import { Form } from '../../components/Form';
+import { SignUpForm } from '../../components/SignUpForm';
 import {
   View,
   KeyboardAvoidingView,
@@ -13,7 +13,7 @@ import {
   Dimensions
 } from 'react-native';
 
-export function SignUp({ navigation }) {
+export function SignUp() {
   return (
     <ScrollView style={{ width: '100%', height: '100%' }}>
       <KeyboardAvoidingView
@@ -30,7 +30,7 @@ export function SignUp({ navigation }) {
                 <Text style={styles.title}>
                   Criar conta
                 </Text>
-                <Form />
+                <SignUpForm />
               </View>
             </View>
           </View>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   box: {
     height: '75%',
     width: '100%',
-    backgroundColor: '#fff',
+    backgroundColor: '#FFF',
     paddingTop: 32,
     borderRadius: 32,
     alignItems: 'center',
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 36,
-    paddingBottom: 16,
+    paddingBottom: 22,
     fontFamily: 'Nunito_700Bold'
   },
 })

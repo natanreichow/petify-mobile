@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: 'Nunito_800ExtraBold',
     color: '#fff',
   }

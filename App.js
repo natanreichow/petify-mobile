@@ -1,6 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { Home } from './src/pages/Home';
 import { SignUp } from './src/pages/SignUp';
+import { Breed } from './src/pages/Breed';
+import { AnimalKind } from './src/pages/AnimalKind';
+import { Login } from './src/pages/Login';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
@@ -42,6 +45,9 @@ export default function App() {
           }}>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="AnimalKind" component={AnimalKind} />
+          <Stack.Screen name="Breed" component={Breed} />
         </Stack.Navigator>
         <StatusBar style="light" />
       </NavigationContainer>
