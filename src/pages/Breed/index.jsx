@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, FlatList, Image, Text, TextInput, SafeAreaView, Touchable, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, FlatList, Image, Text, TextInput, SafeAreaView, Touchable, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { useRoute } from "@react-navigation/native";
-import {SearchInput } from '../../components/SearchInput'
+import { Input } from '../../components/Input'
 import DogLoadingAnimation from '../../../assets/dogLoadingAnimation.json'
 import CatLoadingAnimation from '../../../assets/catLoadingAnimation.json'
 
@@ -51,14 +51,17 @@ const data = {
 }
 
 export function Breed() {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
+  const [searchValue, setSearchValue] = useState("");
+
+  const { params } = useRoute();
+  const [dogList, setDogList] = useState(data[params.petType]);
+
 
   const [selectedBreed, setSelectedBreed] = useState({
     name: '',
     image_url: ""
   })
-
-  const { params } = useRoute();
 
   setTimeout(() => {
     setLoading(false);
@@ -92,46 +95,53 @@ export function Breed() {
     }
   }
 
+  const results = dogList.filter((dog) => dog.name.includes(searchValue));
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
-        <FlatList
-          horizontal={false}
-          data={data[params.petType]}
-          numColumns={2}
-          ListHeaderComponent={() => (
-            <View style={styles.textContent}>
-              <Text style={styles.title}>Eba</Text>
-              <Text style={styles.text}>Amamos um doguinho, agora conta para a gente, qual é a raça dele(a)?</Text>
-              <SearchInput />
-            </View>
-          )}
-          ItemSeparatorComponent={() => (
-            <View
-              style={{ width: 10, height: 10, }}
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.content}>
+          <View>
+            <Text style={styles.title}>Eba</Text>
+            <Text style={styles.text}>Amamos um doguinho, agora conta para a gente, qual é a raça dele(a)?</Text>
+            <Input
+              iconName="search"
+              placeholder="Search"
+              value={searchValue}
+              onChangeText={(value) => setSearchValue(value)}
             />
-          )}
-          keyExtractor={({ image_url }) => image_url}
-          renderItem={({ item, index }) => (
-            <TouchableOpacity
-            onPress={() => setSelectedBreed(item)}
-            activeOpacity={1}
-            style={{
-              ...styles.petBox,
-              borderColor: selectedBreed.name === item.name ? '#7130CD' : '#A7A7A7',
-              borderWidth: selectedBreed.name === item.name ? 2 : 1,
-              marginLeft: index % 2 === 0 ? 0 : 5, // par ? 0 : 5
-              marginRight: index % 2 === 0 ? 5 : 0,  // par ? 5 : 0
-            }}
-              >
-
-              <Text style={styles.petBreed}>{item.name}</Text>
-              <Image source={{ uri: item.image_url }} style={styles.petImage} />
-            </TouchableOpacity>
-          )}
-        />
-      </View>
-
+          </View>
+          <FlatList
+            horizontal={false}
+            style={styles.flatList}
+            numColumns={2}
+            data={results}
+            showsVerticalScrollIndicator={false}
+            ItemSeparatorComponent={() => (
+              <View
+                style={{ width: 10, height: 10, }}
+              />
+            )}
+            keyExtractor={({ image_url }) => image_url}
+            renderItem={({ item, index }) => (
+              <TouchableOpacity
+                onPress={() => setSelectedBreed(item)}
+                activeOpacity={1}
+                style={{
+                  ...styles.petBox,
+                  borderColor: selectedBreed.name === item.name ? '#7130CD' : '#A7A7A7',
+                  borderWidth: selectedBreed.name === item.name ? 2 : 1,
+                  marginLeft: index % 2 === 0 ? 0 : 5, // par ? 0 : 5
+                  marginRight: index % 2 === 0 ? 5 : 0,  // par ? 5 : 0
+                }}
+                >
+                <Text style={styles.petBreed}>{item.name}</Text>
+                <Image source={{ uri: item.image_url }} style={styles.petImage} />
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+      </TouchableWithoutFeedback>
     </SafeAreaView>
   )
 }
@@ -168,7 +178,11 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'Nunito_400Regular',
     fontSize: 18,
-    marginBottom: 24
+    marginBottom: 24,
+  },
+
+  flatList: {
+    width: '100%',
   },
 
   petBox: {

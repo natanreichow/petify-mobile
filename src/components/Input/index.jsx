@@ -1,12 +1,18 @@
-import {View, Text, TextInput, StyleSheet, Image} from 'react-native';
+import { View, TextInput, StyleSheet } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
-export function SearchInput() {
+export function Input({ 
+  iconName,
+  iconColor = "#7130CD",
+  ...props 
+}) {
   return (
     <View style={styles.searchInput}>
-      <Image source={require('../../../assets/search-vector.png')} />
-      <TextInput 
-      style={styles.input}
-      placeholder={'Search'} />
+      <MaterialIcons name={iconName} size={24} color={iconColor} />
+      <TextInput
+        style={styles.input}
+        {...props}
+      />
     </View>
   )
 }

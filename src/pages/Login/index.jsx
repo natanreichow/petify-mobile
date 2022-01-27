@@ -2,9 +2,9 @@ import { Logo } from '../../components/Logo';
 import React from 'react';
 import { Formik } from 'formik';
 import { Button } from '../../components/Button';
+import { Input } from '../../components/Input';
 import {
   View,
-  TextInput,
   StyleSheet,
   Text,
   Image
@@ -27,14 +27,16 @@ export const LoginForm = props => {
     >
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <View>
-          <TextInput style={styles.input}
+          <Input
+            iconName={'person'}
             label={'email'}
             placeholder={'Email'}
             onChangeText={handleChange('email')}
             onBlur={handleBlur('email')}
             value={values.email}
           />
-          <TextInput style={styles.input}
+          <Input
+            iconName={'lock'}
             label={'password'}
             keyboardType="visible-password"
             textContentType="password"

@@ -14,7 +14,7 @@ export function AnimalKind() {
             Hello
           </Text>
           <Text style={styles.text}>
-            Que bom que você está aqui, vai ser uma honra ajudar você a cuidar do seu bichinho. Mas primeiramente, vamos cuidar de um gato ou de um cachorro?
+            We are pleased that you are here with as at Petify. It is going to be a honor to help you take care of you pet. But first, are we taking care of a cat or a dog?
           </Text>
         </View>
         <View style={styles.contentBox}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { Button } from '../Button';
+import { Input } from '../Input';
 import {
   View,
   KeyboardAvoidingView,
@@ -25,14 +26,16 @@ export const SignUpForm = props => {
     >
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <View>
-          <TextInput style={styles.input}
+          <Input
+            iconName={'person'}
             label={'name'}
             placeholder={'Name'}
             onChangeText={handleChange('name')}
             onBlur={handleBlur('name')}
             value={values.name}
           />
-          <TextInput style={styles.input}
+          <Input
+            iconName={'email'}
             label={'email'}
             placeholder={'Email'}
             keyboardType="email-address"
@@ -40,7 +43,8 @@ export const SignUpForm = props => {
             onBlur={handleBlur('email')}
             value={values.email}
           />
-          <TextInput style={styles.input}
+          <Input
+            iconName={'lock'}
             label={'password'}
             keyboardType="visible-password"
             textContentType="password"
@@ -50,7 +54,8 @@ export const SignUpForm = props => {
             onBlur={handleBlur('password')}
             value={values.password}
           />
-          <TextInput style={styles.input}
+          <Input
+            iconName={'lock'}
             label={'confirmPassword'}
             placeholder={'Confirm password'}
             keyboardType="visible-password"
