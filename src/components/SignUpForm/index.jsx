@@ -27,7 +27,7 @@ export const SignUpForm = props => {
         <View>
           <TextInput style={styles.input}
             label={'name'}
-            placeholder={'Nome'}
+            placeholder={'Name'}
             onChangeText={handleChange('name')}
             onBlur={handleBlur('name')}
             value={values.name}
@@ -45,14 +45,14 @@ export const SignUpForm = props => {
             keyboardType="visible-password"
             textContentType="password"
             secureTextEntry
-            placeholder={'Senha'}
+            placeholder={'Password'}
             onChangeText={handleChange('password')}
             onBlur={handleBlur('password')}
             value={values.password}
           />
           <TextInput style={styles.input}
             label={'confirmPassword'}
-            placeholder={'Confirmar senha'}
+            placeholder={'Confirm password'}
             keyboardType="visible-password"
             textContentType="password"
             secureTextEntry
@@ -61,7 +61,7 @@ export const SignUpForm = props => {
             value={values.confirmPassword}
           />
           <Button onPress={handleSubmit}>
-            Criar conta
+            Sign Up!
         </Button>
         </View>
       )}

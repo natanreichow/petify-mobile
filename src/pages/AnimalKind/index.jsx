@@ -11,7 +11,7 @@ export function AnimalKind() {
       <View style={styles.content}>
         <View style={styles.contentText}>
           <Text style={styles.title}>
-            Olá
+            Hello
           </Text>
           <Text style={styles.text}>
             Que bom que você está aqui, vai ser uma honra ajudar você a cuidar do seu bichinho. Mas primeiramente, vamos cuidar de um gato ou de um cachorro?

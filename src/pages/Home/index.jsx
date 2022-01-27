@@ -14,23 +14,23 @@ export function Home() {
       </View>
 
       <View style={styles.contentBox}>
-        <Image style={styles.dogImage} source={{ uri: 'https://s3-alpha-sig.figma.com/img/498c/5e6f/aa59283d781a8564392efcbef3c208a4?Expires=1643587200&Signature=cfhxsnmclrG0TKdmK0iC55yX-QZc4jBkO5b5Y4ygR4cbnaUWY5GrbIpxv60ymB9fPE4PmipcF2y~s~lkev~YJfKxpvpzzL9h92SIfmm7BykZNF7WQ5x-F0mcQfAYJghbVJPJjae9fiBv78EHWEVJ88hCHfb5AY6-ypl2VWQQsOL3Kj75PyfSUTpUNashlr7642aCnJy8fnDAbxgiTE4P60bL2n8IjJvUS01I9F~WnD9GO-4sMpfseUcFlfyZbTpO7~IPXNVDghGfZF~IQJmFnmpOxJ8Enbadp3HFbXDJ5sPLYstUxkvO0OzMwTkhajB9uSgFyX8G2H5zWb-E05RYQQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA' }} />
+        <Image style={styles.dogImage} source={{ uri: "https://s3-alpha-sig.figma.com/img/f2b6/a51e/2ceccdad84ebf5bb6ab1ed9da5560bc5?Expires=1644192000&Signature=EwyoUkNNOqlvba6yGvphjM2zZZgRwi6HWFffZW9zvOUxpIJtaDh3frHNbCpUSoCa2X~JPbNh4Sr6eyHhciypERVJvBLI5irTx~av1Xkc6kRH9kLpCzMJHNCMmFdsFpD-pXtN5kfq~Jjgy5d1-FphazcdOYnbnLTzZxSve1ZrWSxwXX37H0beMSFHqS0QTG9WCvdM3yAazg-nagJkUINQPCry~DoeDBopDhPP6tDOc4kg6oflzHr3on64MhW20X5LoXMYLl6Sno6NkdMuje6ScAp2Nq5NrrOjlfBPoBlbNCFEziLk814oPQ5iIpBO6QdGyMRz75tiM2Lo25pDY87ZHg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" }} />
 
         <View style={styles.box}>
           <View style={styles.boxContent}>
             <View style={styles.textBox}>
               <Text style={styles.title}>
-                Bem vindo
+                Wellcome
               </Text>
               <Text style={styles.text}>
-                Nosso objetivo aqui na petify é melhorar a qualidiade de vida do seu pet. Mas primeiro, você já possui uma conta?
+                Our goal here at Petify is to improve yours and your pet's quality of life. Do you already have a account?
               </Text>
             </View>
             <Button onPress={() => navigate('SignUp')}>
-              Criar conta
+              Sign Up!
             </Button>
             <UnderlineButton onPress={() => navigate('Login')}>
-              já tenho uma conta
+              I already have a account
             </UnderlineButton>
           </View>
         </View>

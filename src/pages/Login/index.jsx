@@ -39,13 +39,13 @@ export const LoginForm = props => {
             keyboardType="visible-password"
             textContentType="password"
             secureTextEntry
-            placeholder={'Senha'}
+            placeholder={'Password'}
             onChangeText={handleChange('password')}
             onBlur={handleBlur('password')}
             value={values.password}
           />
           <Button onPress={handleSubmit}>
-            Entrar
+            Login
           </Button>
         </View>
       )
@@ -62,7 +62,7 @@ export function Login() {
       </View>
       <View style={styles.box}>
         <View style={styles.boxContent}>
-          <Text style={styles.title}>Entrar</Text>
+          <Text style={styles.title}>Login</Text>
           <LoginForm />
           <View style={styles.loginImage}>
             <Image source={require('../../../assets/loginImage.png')} />
@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
     marginBottom: 38,
     paddingLeft: 16,
     paddingRight: 16,
+    fontSize: 18,
   },
 
   loginImage: {

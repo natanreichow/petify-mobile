@@ -49,7 +49,7 @@ export default function App() {
           <Stack.Screen name="AnimalKind" component={AnimalKind} />
           <Stack.Screen name="Breed" component={Breed} />
         </Stack.Navigator>
-        <StatusBar style="light" />
+        <StatusBar style="dark" />
       </NavigationContainer>
     );
   }

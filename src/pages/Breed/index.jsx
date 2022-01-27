@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, FlatList, Image, Text } from 'react-native';
+import { View, StyleSheet, FlatList, Image, Text, TextInput, SafeAreaView, Touchable, TouchableOpacity } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { useRoute } from "@react-navigation/native";
+import {SearchInput } from '../../components/SearchInput'
 import DogLoadingAnimation from '../../../assets/dogLoadingAnimation.json'
 import CatLoadingAnimation from '../../../assets/catLoadingAnimation.json'
 
@@ -16,13 +17,17 @@ const data = {
       image_url: "https://s3-alpha-sig.figma.com/img/5cb1/8884/e3f6cc85f3566feb051e00920e060a88?Expires=1644192000&Signature=K240HBmtYepfxvtmsDUlFrVQUTSjPweNMBGRAvC-7-NP8HcHKdPfN-TtvrI5kJZ3ubDGpufhBJ0Jt0F6fnklqwSha06Gl1e780JmH6PoBya87Nnh6ql89YuJsb5PwSFAimQHdzndymfeDhZ2Ym~hBeG7DDcYR-xCNSchdCpDC-5YFc-gR0DgLz2csawZq9Pz9Z7tB7u30aV~l9UyKGRScVbxdsoyr58lIEmpCGSyUuZCTM3E8R-WLPNgmUhLwaVjG50YkDMKDtoeRUq27AB0Ph7XSlEjUwJhdy8NGdGvcpwdqwzv4iEWAfsqkDSSDLlhprc5EidjeasuJRBixjAcMA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
     },
     {
-      name: 'Pitbull',
-      image_url: "https://s3-alpha-sig.figma.com/img/9004/2444/c241efe58b1c75df1aea24725b8d5cf8?Expires=1644192000&Signature=T1ahgDOdi3WUfAqqt~xFfRFkCGfR3G0hMPzopElRfLwHOLoBT6IjfyrLndo0WNLg0ZbP5ciylgz2v-FEpacjhlFF5aD14-JtgTBFH81y4sKWV9BruGjKD4sVDYeAJ3r094RKK9QLOw9oX9SLMIQ-2KcGLwOncRXhXJWrBfmxxM8UffwH1vo61WYmmZxQNxYdBNVHNG1I63lk-J3SHtRuRzyHtvtuZU4DUL~F1AEIdtf6hMPsws0yBi0y7HO44-1MVpY2EW6vFlN2yPvRUAeeBeKV6c6ogOOF48LBFbYqkAUmETFKq90Iwai9~lqhRu~wE5D~Vy288BPyxdQGTupMNg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+      name: 'Pug',
+      image_url: "https://s3-alpha-sig.figma.com/img/600a/15f3/09d07772c585f538b8b6358f3e26faf0?Expires=1644192000&Signature=fK38lbqO4jsASbQ9pvWZZmdxRujt4IqELxmZNoe0Lw-QPm1u7sLK0MIaU4g3TyNuP8ZDNl4VuYDpQeawXG8KnPbrLRM9cYEpKWTwI~073gzc7jCp8iiv7nCKzIZ8Bgg6Na51gBQSeSqMBTkRo6rBmr7lCqMNlrQQ9aoEzdtDvyKvU-tXNbkHjytRYQRRHZ6JanLMAx5~2SEGokz5KWeQVdXT0FYWsKHKR08npuiqZZOw9u1xTehIa4eH3keWz8LeNjiTaoaWa-LO3zEEZB4NhsOyrrByJlE7CUkGVemdJU9cI0L7ItxMlxVXKp1ztxY1DcDeoAm9btwepTUXF6CbCw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
     },
     {
       name: 'Golden',
       image_url: "https://s3-alpha-sig.figma.com/img/f2b6/a51e/2ceccdad84ebf5bb6ab1ed9da5560bc5?Expires=1644192000&Signature=EwyoUkNNOqlvba6yGvphjM2zZZgRwi6HWFffZW9zvOUxpIJtaDh3frHNbCpUSoCa2X~JPbNh4Sr6eyHhciypERVJvBLI5irTx~av1Xkc6kRH9kLpCzMJHNCMmFdsFpD-pXtN5kfq~Jjgy5d1-FphazcdOYnbnLTzZxSve1ZrWSxwXX37H0beMSFHqS0QTG9WCvdM3yAazg-nagJkUINQPCry~DoeDBopDhPP6tDOc4kg6oflzHr3on64MhW20X5LoXMYLl6Sno6NkdMuje6ScAp2Nq5NrrOjlfBPoBlbNCFEziLk814oPQ5iIpBO6QdGyMRz75tiM2Lo25pDY87ZHg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
     },
+    // {
+    //   name: 'Beagle',
+    //   image_url: 'https://s3-alpha-sig.figma.com/img/498c/5e6f/aa59283d781a8564392efcbef3c208a4?Expires=1643587200&Signature=cfhxsnmclrG0TKdmK0iC55yX-QZc4jBkO5b5Y4ygR4cbnaUWY5GrbIpxv60ymB9fPE4PmipcF2y~s~lkev~YJfKxpvpzzL9h92SIfmm7BykZNF7WQ5x-F0mcQfAYJghbVJPJjae9fiBv78EHWEVJ88hCHfb5AY6-ypl2VWQQsOL3Kj75PyfSUTpUNashlr7642aCnJy8fnDAbxgiTE4P60bL2n8IjJvUS01I9F~WnD9GO-4sMpfseUcFlfyZbTpO7~IPXNVDghGfZF~IQJmFnmpOxJ8Enbadp3HFbXDJ5sPLYstUxkvO0OzMwTkhajB9uSgFyX8G2H5zWb-E05RYQQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'
+    // },
   ],
 
   cat: [
@@ -47,6 +52,12 @@ const data = {
 
 export function Breed() {
   const [loading, setLoading] = useState(true)
+
+  const [selectedBreed, setSelectedBreed] = useState({
+    name: '',
+    image_url: ""
+  })
+
   const { params } = useRoute();
 
   setTimeout(() => {
@@ -82,75 +93,106 @@ export function Breed() {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         <FlatList
+          horizontal={false}
           data={data[params.petType]}
-          style={styles.petList}
           numColumns={2}
           ListHeaderComponent={() => (
             <View style={styles.textContent}>
               <Text style={styles.title}>Eba</Text>
-              <Text style={styles.text}>Amamos um doguinho, agora conta para a gente, qual é a raça dele(a)</Text>
+              <Text style={styles.text}>Amamos um doguinho, agora conta para a gente, qual é a raça dele(a)?</Text>
+              <SearchInput />
             </View>
           )}
+          ItemSeparatorComponent={() => (
+            <View
+              style={{ width: 10, height: 10, }}
+            />
+          )}
           keyExtractor={({ image_url }) => image_url}
-          renderItem={({ item }) => (
-            <View style={styles.petBox}>
-              <Text>{item.name}</Text>
+          renderItem={({ item, index }) => (
+            <TouchableOpacity
+            onPress={() => setSelectedBreed(item)}
+            activeOpacity={1}
+            style={{
+              ...styles.petBox,
+              borderColor: selectedBreed.name === item.name ? '#7130CD' : '#A7A7A7',
+              borderWidth: selectedBreed.name === item.name ? 2 : 1,
+              marginLeft: index % 2 === 0 ? 0 : 5, // par ? 0 : 5
+              marginRight: index % 2 === 0 ? 5 : 0,  // par ? 5 : 0
+            }}
+              >
+
+              <Text style={styles.petBreed}>{item.name}</Text>
               <Image source={{ uri: item.image_url }} style={styles.petImage} />
-            </View>
+            </TouchableOpacity>
           )}
         />
       </View>
-    </View>
+
+    </SafeAreaView>
   )
 }
 
 
 const styles = StyleSheet.create({
   animationContainer: {
-    backgroundColor: '#fff',
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
+    backgroundColor: '#fff',
   },
 
   container: {
-    flex: 1,
+    height: '100%',
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '100%',
-    backgroundColor: 'grey',
   },
 
   content: {
-    width: '85%'
+    height: '100%',
+    width: '90%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 20,
   },
 
   title: {
     fontSize: 36,
-    paddingBottom: 22,
     fontFamily: 'Nunito_700Bold'
   },
 
   text: {
     fontFamily: 'Nunito_400Regular',
     fontSize: 18,
+    marginBottom: 24
   },
 
   petBox: {
-    backgroundColor: 'blue',
+    borderWidth: 1,
+    borderRadius: 16,
+    flex: 1 / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 
-    // height: 80,
-    marginTop: 10,
-    flex: 1/2,
-
+  petBreed: {
+    paddingTop: 10,
+    fontFamily: 'Nunito_700Bold',
+    fontSize: 18,
   },
 
   petImage: {
-    height: 120,
-    width: 100,
-    backgroundColor: 'black'
+    height: 150,
+    width: 140,
+  },
+
+  bottomBox: {
+    width: '100%',
+    height: 100,
+    backgroundColor: 'blue'
   }
 })

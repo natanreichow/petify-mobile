@@ -3,14 +3,12 @@ import { SignUpForm } from '../../components/SignUpForm';
 import {
   View,
   KeyboardAvoidingView,
-  TextInput,
   StyleSheet,
   Text,
   ScrollView,
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
-  Dimensions
 } from 'react-native';
 
 export function SignUp() {
@@ -28,7 +26,7 @@ export function SignUp() {
             <View style={styles.box}>
               <View style={styles.boxContent}>
                 <Text style={styles.title}>
-                  Criar conta
+                  Sign Up
                 </Text>
                 <SignUpForm />
               </View>
