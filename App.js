@@ -15,7 +15,6 @@ import {
   Nunito_600SemiBold,
   Nunito_700Bold,
   Nunito_800ExtraBold,
-  Nunito_900Black
 } from '@expo-google-fonts/nunito';
 
 export default function App() {
@@ -28,7 +27,7 @@ export default function App() {
     Nunito_600SemiBold,
     Nunito_700Bold,
     Nunito_800ExtraBold,
-    Nunito_900Black
+    Nunito_900Blac
   });
 
   const Stack = createNativeStackNavigator();
